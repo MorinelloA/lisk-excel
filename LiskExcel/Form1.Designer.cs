@@ -69,7 +69,7 @@
             this.cmdSubmit.Location = new System.Drawing.Point(25, 300);
             this.cmdSubmit.Name = "cmdSubmit";
             this.cmdSubmit.Size = new System.Drawing.Size(400, 75);
-            this.cmdSubmit.TabIndex = 0;
+            this.cmdSubmit.TabIndex = 15;
             this.cmdSubmit.Text = "Submit";
             this.cmdSubmit.UseVisualStyleBackColor = true;
             this.cmdSubmit.Click += new System.EventHandler(this.cmdSubmit_Click);
@@ -99,7 +99,7 @@
             this.dtpStart.Location = new System.Drawing.Point(225, 125);
             this.dtpStart.Name = "dtpStart";
             this.dtpStart.Size = new System.Drawing.Size(209, 22);
-            this.dtpStart.TabIndex = 7;
+            this.dtpStart.TabIndex = 5;
             // 
             // dtpEnd
             // 
@@ -108,7 +108,7 @@
             this.dtpEnd.Location = new System.Drawing.Point(225, 150);
             this.dtpEnd.Name = "dtpEnd";
             this.dtpEnd.Size = new System.Drawing.Size(209, 22);
-            this.dtpEnd.TabIndex = 8;
+            this.dtpEnd.TabIndex = 7;
             // 
             // label4
             // 
@@ -131,7 +131,7 @@
             this.cboType.Location = new System.Drawing.Point(225, 175);
             this.cboType.Name = "cboType";
             this.cboType.Size = new System.Drawing.Size(209, 24);
-            this.cboType.TabIndex = 12;
+            this.cboType.TabIndex = 8;
             this.cboType.ValueMember = "1";
             // 
             // label6
@@ -163,7 +163,7 @@
             0});
             this.nudMin.Name = "nudMin";
             this.nudMin.Size = new System.Drawing.Size(209, 22);
-            this.nudMin.TabIndex = 15;
+            this.nudMin.TabIndex = 10;
             // 
             // nudMax
             // 
@@ -176,14 +176,14 @@
             0});
             this.nudMax.Name = "nudMax";
             this.nudMax.Size = new System.Drawing.Size(209, 22);
-            this.nudMax.TabIndex = 16;
+            this.nudMax.TabIndex = 12;
             // 
             // cmdEpoch
             // 
             this.cmdEpoch.Location = new System.Drawing.Point(125, 125);
             this.cmdEpoch.Name = "cmdEpoch";
             this.cmdEpoch.Size = new System.Drawing.Size(75, 23);
-            this.cmdEpoch.TabIndex = 21;
+            this.cmdEpoch.TabIndex = 4;
             this.cmdEpoch.Text = "Epoch";
             this.cmdEpoch.UseVisualStyleBackColor = true;
             this.cmdEpoch.Click += new System.EventHandler(this.cmdEpoch_Click);
@@ -193,7 +193,7 @@
             this.cmdNow.Location = new System.Drawing.Point(125, 150);
             this.cmdNow.Name = "cmdNow";
             this.cmdNow.Size = new System.Drawing.Size(75, 23);
-            this.cmdNow.TabIndex = 22;
+            this.cmdNow.TabIndex = 6;
             this.cmdNow.Text = "Now";
             this.cmdNow.UseVisualStyleBackColor = true;
             this.cmdNow.Click += new System.EventHandler(this.cmdNow_Click);
@@ -203,7 +203,7 @@
             this.txtBothAddress.Location = new System.Drawing.Point(225, 100);
             this.txtBothAddress.Name = "txtBothAddress";
             this.txtBothAddress.Size = new System.Drawing.Size(209, 22);
-            this.txtBothAddress.TabIndex = 32;
+            this.txtBothAddress.TabIndex = 3;
             // 
             // label9
             // 
@@ -219,7 +219,7 @@
             this.txtRecipientAddress.Location = new System.Drawing.Point(225, 75);
             this.txtRecipientAddress.Name = "txtRecipientAddress";
             this.txtRecipientAddress.Size = new System.Drawing.Size(209, 22);
-            this.txtRecipientAddress.TabIndex = 30;
+            this.txtRecipientAddress.TabIndex = 2;
             // 
             // label8
             // 
@@ -235,7 +235,7 @@
             this.txtSenderAddress.Location = new System.Drawing.Point(225, 50);
             this.txtSenderAddress.Name = "txtSenderAddress";
             this.txtSenderAddress.Size = new System.Drawing.Size(209, 22);
-            this.txtSenderAddress.TabIndex = 28;
+            this.txtSenderAddress.TabIndex = 1;
             // 
             // label1
             // 
@@ -251,7 +251,7 @@
             this.cmdZero.Location = new System.Drawing.Point(125, 200);
             this.cmdZero.Name = "cmdZero";
             this.cmdZero.Size = new System.Drawing.Size(75, 23);
-            this.cmdZero.TabIndex = 33;
+            this.cmdZero.TabIndex = 9;
             this.cmdZero.Text = "Zero";
             this.cmdZero.UseVisualStyleBackColor = true;
             this.cmdZero.Click += new System.EventHandler(this.cmdZero_Click);
@@ -261,7 +261,7 @@
             this.cmdMax.Location = new System.Drawing.Point(125, 225);
             this.cmdMax.Name = "cmdMax";
             this.cmdMax.Size = new System.Drawing.Size(75, 23);
-            this.cmdMax.TabIndex = 34;
+            this.cmdMax.TabIndex = 11;
             this.cmdMax.Text = "Max";
             this.cmdMax.UseVisualStyleBackColor = true;
             this.cmdMax.Click += new System.EventHandler(this.cmdMax_Click);
@@ -282,7 +282,7 @@
             this.radYes.Location = new System.Drawing.Point(225, 250);
             this.radYes.Name = "radYes";
             this.radYes.Size = new System.Drawing.Size(53, 21);
-            this.radYes.TabIndex = 36;
+            this.radYes.TabIndex = 13;
             this.radYes.TabStop = true;
             this.radYes.Text = "Yes";
             this.radYes.UseVisualStyleBackColor = true;
@@ -293,7 +293,7 @@
             this.radNo.Location = new System.Drawing.Point(300, 250);
             this.radNo.Name = "radNo";
             this.radNo.Size = new System.Drawing.Size(47, 21);
-            this.radNo.TabIndex = 37;
+            this.radNo.TabIndex = 14;
             this.radNo.Text = "No";
             this.radNo.UseVisualStyleBackColor = true;
             // 
@@ -321,21 +321,21 @@
             // mnuAbout
             // 
             this.mnuAbout.Name = "mnuAbout";
-            this.mnuAbout.Size = new System.Drawing.Size(216, 26);
+            this.mnuAbout.Size = new System.Drawing.Size(125, 26);
             this.mnuAbout.Text = "About";
             this.mnuAbout.Click += new System.EventHandler(this.mnuAbout_Click);
             // 
             // mnuHelp
             // 
             this.mnuHelp.Name = "mnuHelp";
-            this.mnuHelp.Size = new System.Drawing.Size(216, 26);
+            this.mnuHelp.Size = new System.Drawing.Size(125, 26);
             this.mnuHelp.Text = "Help";
             this.mnuHelp.Click += new System.EventHandler(this.mnuHelp_Click);
             // 
             // mnuExit
             // 
             this.mnuExit.Name = "mnuExit";
-            this.mnuExit.Size = new System.Drawing.Size(216, 26);
+            this.mnuExit.Size = new System.Drawing.Size(125, 26);
             this.mnuExit.Text = "Exit";
             this.mnuExit.Click += new System.EventHandler(this.mnuExit_Click);
             // 
