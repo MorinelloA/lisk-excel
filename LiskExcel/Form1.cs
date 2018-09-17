@@ -135,6 +135,7 @@ namespace LiskExcel
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                         MessageBoxDefaultButton.Button1) == DialogResult.Yes))
                     {
+                        this.Enabled = false;
                         int i = 0;
 
                         List<Tran> allTrans = new List<Tran>();
@@ -208,6 +209,10 @@ namespace LiskExcel
                         catch (Exception ee)
                         {
                             MessageBox.Show(ee.ToString());
+                        }
+                        finally
+                        {
+                            this.Enabled = true;
                         }
                     }
                 }
