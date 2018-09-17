@@ -1,0 +1,15 @@
+C:\Users\tmorinello\source\repos\LiskExcel\LiskExcel\bin\Debug\LiskExcel.exe.config
+C:\Users\tmorinello\source\repos\LiskExcel\LiskExcel\bin\Debug\LiskExcel.exe
+C:\Users\tmorinello\source\repos\LiskExcel\LiskExcel\bin\Debug\LiskExcel.pdb
+C:\Users\tmorinello\source\repos\LiskExcel\LiskExcel\bin\Debug\EPPlus.dll
+C:\Users\tmorinello\source\repos\LiskExcel\LiskExcel\bin\Debug\Newtonsoft.Json.dll
+C:\Users\tmorinello\source\repos\LiskExcel\LiskExcel\bin\Debug\EPPlus.xml
+C:\Users\tmorinello\source\repos\LiskExcel\LiskExcel\bin\Debug\Newtonsoft.Json.xml
+C:\Users\tmorinello\source\repos\LiskExcel\LiskExcel\obj\Debug\LiskExcel.csprojAssemblyReference.cache
+C:\Users\tmorinello\source\repos\LiskExcel\LiskExcel\obj\Debug\LiskExcel.Form1.resources
+C:\Users\tmorinello\source\repos\LiskExcel\LiskExcel\obj\Debug\LiskExcel.Properties.Resources.resources
+C:\Users\tmorinello\source\repos\LiskExcel\LiskExcel\obj\Debug\LiskExcel.csproj.GenerateResource.cache
+C:\Users\tmorinello\source\repos\LiskExcel\LiskExcel\obj\Debug\LiskExcel.csproj.CoreCompileInputs.cache
+C:\Users\tmorinello\source\repos\LiskExcel\LiskExcel\obj\Debug\LiskExcel.csproj.CopyComplete
+C:\Users\tmorinello\source\repos\LiskExcel\LiskExcel\obj\Debug\LiskExcel.exe
+C:\Users\tmorinello\source\repos\LiskExcel\LiskExcel\obj\Debug\LiskExcel.pdb
