@@ -24,6 +24,14 @@ This simple application will allow you to gather all Lisk transactions that fit 
 - Min Amount must be greater than or equal to Max Amount
 - Entering a max value of 0 will effectively query all amounts from the Min entered upwards
 
+### To Run
+
+Simply navigate to the LiskExcel/bin/Release folder, and run LiskExcel.exe
+
+### Future
+
+If there is enough interest, I will convert this into a Web App for Lisk.support
+
 ### Disclaimer
 
 By using this software you accept the terms and conditions. This software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. in no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.
