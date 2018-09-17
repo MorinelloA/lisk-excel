@@ -1,9 +1,9 @@
 # LiskExcel
 Windows Application to gather Lisk transactions and save them in an Excel file. Compatible with Lisk Core 1.0
 
-![LiskExcel](https://github.com/MorinelloA/LiskExcel/images/main.png?raw=true)
+![LiskExcel](https://github.com/MorinelloA/LiskExcel/blob/master/images/main.png?raw=true)
 
-###What is does
+### What is does
 
 This simple application will allow you to gather all Lisk transactions that fit your criteria and enter them into an Excel Spreadsheet. These criteria include:
 
@@ -17,7 +17,7 @@ This simple application will allow you to gather all Lisk transactions that fit 
 - Max Amount
 - Option to add links to the Explorer (For txs and addresses)
 
-###Notes
+### Notes
 
 - All three address fields may be left blank
 - Start time must be earlier than End time
@@ -28,8 +28,8 @@ This simple application will allow you to gather all Lisk transactions that fit 
 
 By using this software you accept the terms and conditions. This software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. in no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.
 
-###Support
+### Support
 
-[Visit my delegate proposal for me information about me](www.tonyt908.com)
+[Visit my delegate proposal for me information about me](https://www.tonyt908.com)
 
 Please consider supporting me with a vote or small donation: [TonyT908](https://explorer.lisk.io/address/15297866638783057016L)
