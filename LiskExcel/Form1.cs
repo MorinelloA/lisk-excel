@@ -36,8 +36,16 @@ namespace LiskExcel
             }
             else
             {
-                long n;
-                bool isNumeric = long.TryParse(address.Substring(0, address.Length - 1), out n);
+                bool isNumeric = true;
+                for(int i = 0; i < address.Length - 1; i++)
+                {
+                    int n;
+                    bool temp = int.TryParse(address.Substring(i, 1), out n);
+                    if(!temp || address.Substring(i, 1) == " ")
+                    {
+                        isNumeric = false;
+                    }
+                }
                 return isNumeric;
             }
         }
@@ -102,19 +110,19 @@ namespace LiskExcel
                         transType = "&type=3";
                     }
 
-                    string senderAddress = txtSenderAddress.Text;
+                    string senderAddress = txtSenderAddress.Text.Trim();
                     if (senderAddress != "")
                     {
                         senderAddress = "&senderId=" + senderAddress;
                     }
 
-                    string recipientAddress = txtRecipientAddress.Text;
+                    string recipientAddress = txtRecipientAddress.Text.Trim();
                     if (recipientAddress != "")
                     {
                         recipientAddress = "&recipientId=" + recipientAddress;
                     }
 
-                    string bothAddress = txtBothAddress.Text;
+                    string bothAddress = txtBothAddress.Text.Trim();
                     if (bothAddress != "")
                     {
                         bothAddress = "&senderIdOrRecipientId=" + bothAddress;
@@ -124,96 +132,104 @@ namespace LiskExcel
                     
                     Trans trans = new Trans();
 
-                    using (WebClient client = new WebClient())
+                    try
                     {
-                        string url = node + "/api/transactions?offset=0" + senderAddress + recipientAddress + bothAddress + strStart + strEnd + strMin + strMax + transType + "&limit=1";
-                        s = client.DownloadString(url);
+                        using (WebClient client = new WebClient())
+                        {
+                            string url = node + "/api/transactions?offset=0" + senderAddress + recipientAddress + bothAddress + strStart + strEnd + strMin + strMax + transType + "&limit=1";
+                            s = client.DownloadString(url);
+                        }
+                    
+                        trans = JsonConvert.DeserializeObject<Trans>(s);
+
+                        if ((MessageBox.Show("This request will process " + trans.meta.count + " transactions. Do you wish to proceed?", "Confirm",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                            MessageBoxDefaultButton.Button1) == DialogResult.Yes))
+                        {
+                            this.Enabled = false;
+                            int i = 0;
+
+                            List<Tran> allTrans = new List<Tran>();
+                            do
+                            {
+                                Console.WriteLine(i);
+
+                                using (WebClient client = new WebClient())
+                                {
+                                    string url = node + "/api/transactions?offset=" + i + senderAddress + recipientAddress + bothAddress + strStart + strEnd + strMin + strMax + transType + "&limit=100";
+                                    s = client.DownloadString(url);
+                                }
+                                trans = JsonConvert.DeserializeObject<Trans>(s);
+                                foreach (Tran tr in trans.data)
+                                {
+                                    allTrans.Add(tr);
+                                }
+                                i += 100;
+                            } while (trans.meta.count > i - 100);
+
+                            ExcelPackage ep = new ExcelPackage();
+
+                            var ws = ep.Workbook.Worksheets.Add("Transactions");
+                            ws.Cells["A1"].Value = "Tx ID";
+                            ws.Cells["B1"].Value = "From";
+                            ws.Cells["C1"].Value = "To";
+                            ws.Cells["D1"].Value = "Amount";
+                            ws.Cells["E1"].Value = "Fee";
+                            ws.Cells["F1"].Value = "Datetime";
+                            ws.Cells["G1"].Value = "Timestamp";
+                            ws.Cells["H1"].Value = "Height";
+
+                            for (int ii = 0; ii < allTrans.Count; ii++)
+                            {
+                                if (radYes.Checked)
+                                {
+                                    ws.Cells["A" + (ii + 2)].Formula = "HYPERLINK(\"https://explorer.lisk.io/tx/" + allTrans[ii].id + "\",\"" + allTrans[ii].id + "\")";
+                                    ws.Cells["B" + (ii + 2)].Formula = "HYPERLINK(\"https://explorer.lisk.io/address/" + allTrans[ii].senderId + "\",\"" + allTrans[ii].senderId + "\")";
+                                    ws.Cells["C" + (ii + 2)].Formula = "HYPERLINK(\"https://explorer.lisk.io/address/" + allTrans[ii].recipientId + "\",\"" + allTrans[ii].recipientId + "\")";
+                                }
+                                else
+                                {
+                                    ws.Cells["A" + (ii + 2)].Value = allTrans[ii].id;
+                                    ws.Cells["B" + (ii + 2)].Value = allTrans[ii].senderId;
+                                    ws.Cells["C" + (ii + 2)].Value = allTrans[ii].recipientId;
+                                }
+
+                                ws.Cells["D" + (ii + 2)].Value = (decimal)allTrans[ii].amount / 100000000;
+                                ws.Cells["E" + (ii + 2)].Value = (decimal)allTrans[ii].fee / 100000000;
+
+                                DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+                                dateTime = dateTime.AddSeconds(allTrans[ii].timestamp + 1464109200);
+                                ws.Cells["F" + (ii + 2)].Value = dateTime.ToString("MM/dd/yyyy HH:mm");
+                                ws.Cells["G" + (ii + 2)].Value = allTrans[ii].timestamp;
+                                ws.Cells["H" + (ii + 2)].Value = allTrans[ii].height;
+                            }
+
+                            try
+                            {
+                                sfd.Filter = "Excel File|*.xlsx";
+                                if (sfd.ShowDialog() == DialogResult.OK)
+                                {
+                                    ep.SaveAs(new FileInfo(sfd.FileName));
+                                    MessageBox.Show("File Saved");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Cancelled");
+                                }
+                            }
+                            catch (Exception ee)
+                            {
+                                MessageBox.Show(ee.ToString());
+                            }
+                            finally
+                            {
+                                this.Enabled = true;
+                            }
+                        }
                     }
-                    trans = JsonConvert.DeserializeObject<Trans>(s);
-
-                    if ((MessageBox.Show("This request will process " + trans.meta.count + " transactions. Do you wish to proceed?", "Confirm",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-                        MessageBoxDefaultButton.Button1) == DialogResult.Yes))
+                    catch
                     {
-                        this.Enabled = false;
-                        int i = 0;
-
-                        List<Tran> allTrans = new List<Tran>();
-                        do
-                        {
-                            Console.WriteLine(i);
-
-                            using (WebClient client = new WebClient())
-                            {
-                                string url = node + "/api/transactions?offset=" + i + senderAddress + recipientAddress + bothAddress + strStart + strEnd + strMin + strMax + transType + "&limit=100";
-                                s = client.DownloadString(url);
-                            }
-                            trans = JsonConvert.DeserializeObject<Trans>(s);
-                            foreach (Tran tr in trans.data)
-                            {
-                                allTrans.Add(tr);
-                            }
-                            i += 100;
-                        } while (trans.meta.count > i - 100);
-
-                        ExcelPackage ep = new ExcelPackage();
-
-                        var ws = ep.Workbook.Worksheets.Add("Transactions");
-                        ws.Cells["A1"].Value = "Tx ID";
-                        ws.Cells["B1"].Value = "From";
-                        ws.Cells["C1"].Value = "To";
-                        ws.Cells["D1"].Value = "Amount";
-                        ws.Cells["E1"].Value = "Fee";
-                        ws.Cells["F1"].Value = "Datetime";
-                        ws.Cells["G1"].Value = "Timestamp";
-                        ws.Cells["H1"].Value = "Height";
-
-                        for (int ii = 0; ii < allTrans.Count; ii++)
-                        {
-                            if (radYes.Checked)
-                            {
-                                ws.Cells["A" + (ii + 2)].Formula = "HYPERLINK(\"https://explorer.lisk.io/tx/" + allTrans[ii].id + "\",\"" + allTrans[ii].id + "\")";
-                                ws.Cells["B" + (ii + 2)].Formula = "HYPERLINK(\"https://explorer.lisk.io/address/" + allTrans[ii].senderId + "\",\"" + allTrans[ii].senderId + "\")";
-                                ws.Cells["C" + (ii + 2)].Formula = "HYPERLINK(\"https://explorer.lisk.io/address/" + allTrans[ii].recipientId + "\",\"" + allTrans[ii].recipientId + "\")";
-                            }
-                            else
-                            {
-                                ws.Cells["A" + (ii + 2)].Value = allTrans[ii].id;
-                                ws.Cells["B" + (ii + 2)].Value = allTrans[ii].senderId;
-                                ws.Cells["C" + (ii + 2)].Value = allTrans[ii].recipientId;
-                            }
-
-                            ws.Cells["D" + (ii + 2)].Value = (decimal)allTrans[ii].amount / 100000000;
-                            ws.Cells["E" + (ii + 2)].Value = (decimal)allTrans[ii].fee / 100000000;
-
-                            DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-                            dateTime = dateTime.AddSeconds(allTrans[ii].timestamp + 1464109200);
-                            ws.Cells["F" + (ii + 2)].Value = dateTime.ToString("MM/dd/yyyy HH:mm");
-                            ws.Cells["G" + (ii + 2)].Value = allTrans[ii].timestamp;
-                            ws.Cells["H" + (ii + 2)].Value = allTrans[ii].height;
-                        }
-
-                        try
-                        {
-                            sfd.Filter = "Excel File|*.xlsx";
-                            if (sfd.ShowDialog() == DialogResult.OK)
-                            {
-                                ep.SaveAs(new FileInfo(sfd.FileName));
-                                MessageBox.Show("File Saved");
-                            }
-                            else
-                            {
-                                MessageBox.Show("Cancelled");
-                            }
-                        }
-                        catch (Exception ee)
-                        {
-                            MessageBox.Show(ee.ToString());
-                        }
-                        finally
-                        {
-                            this.Enabled = true;
-                        }
+                        MessageBox.Show("Error. Please check your inputs and try again");
                     }
                 }
             }
