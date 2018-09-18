@@ -36,8 +36,8 @@ namespace LiskExcel
             }
             else
             {
-                int n;
-                bool isNumeric = int.TryParse(address.Substring(0, address.Length - 1), out n);
+                long n;
+                bool isNumeric = long.TryParse(address.Substring(0, address.Length - 1), out n);
                 return isNumeric;
             }
         }
