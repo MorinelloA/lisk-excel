@@ -1,11 +1,11 @@
 # LiskExcel
-Windows Application to gather Lisk transactions and save them in an Excel file. Compatible with Lisk Core 1.0
+Windows Application to gather either Lisk transactions or data field searches and save them in an Excel file. Compatible with Lisk Core 1.0
 
 ![LiskExcel](https://github.com/MorinelloA/LiskExcel/blob/master/images/main.png?raw=true)
 
-### What is does
+### Transaction Gather
 
-This simple application will allow you to gather all Lisk transactions that fit your criteria and enter them into an Excel Spreadsheet. These criteria include:
+This application will allow you to gather all Lisk transactions that fit your criteria and enter them into an Excel Spreadsheet. These criteria include:
 
 - Sender Address
 - Recipient Address
@@ -17,9 +17,17 @@ This simple application will allow you to gather all Lisk transactions that fit 
 - Max Amount
 - Option to add links to the Explorer (For txs and addresses)
 
+### Data Field Search Gather
+
+This application also allows you to gather Data Field data from transactions, based on a user defined search string. Users have the option to:
+
+- Search for the exact string, or if the data field simple contains that string
+- Limit results to Sender and/or Receipient Address
+- Add links to the explorer (For txs and addresses)
+
 ### Notes
 
-- All three address fields may be left blank
+- All address fields may be left blank
 - Start time must be earlier than End time
 - Min Amount must be greater than or equal to Max Amount
 - Entering a max value of 0 will effectively query all amounts from the Min entered upwards
