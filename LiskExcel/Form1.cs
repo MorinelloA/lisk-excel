@@ -207,6 +207,8 @@ namespace LiskExcel
                                     ws.Cells["H" + (ii + 2)].Value = allTrans[ii].height;
                                 }
 
+                                ws.Cells.AutoFitColumns();
+
                                 try
                                 {
                                     sfd.Filter = "Excel File|*.xlsx";
@@ -312,6 +314,8 @@ namespace LiskExcel
                             ii++;
                         }
                     }
+
+                    ws.Cells.AutoFitColumns();
 
                     try
                     {
