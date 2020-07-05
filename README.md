@@ -1,4 +1,7 @@
-# LiskExcel
+# Lisk Excel
+
+NOTE: This project has been converted into a full web app at https://www.lisk.support/lisk-excel/
+
 Windows Application to gather either Lisk transactions or data field searches and save them in an Excel file. Compatible with Lisk Core 1.0
 
 ![LiskExcel](https://github.com/MorinelloA/LiskExcel/blob/master/images/main.png?raw=true)
